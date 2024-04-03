@@ -391,11 +391,11 @@ document.addEventListener("DOMContentLoaded", function() {
   inputNumber.max = maxValue;
   inputNumber.value = initialValue; // Установка начального значения без форматирования
   
-//   // Функция обновления стилей ползунка
-//   function updateSliderBackground(value) {
-//     const percentage = (value - minValue) / (maxValue - minValue) * 100;
-//     slider.style.background = `linear-gradient(to right, #81c784 0%, #81c784 ${percentage}%, #e8f5e9 ${percentage}%, #e8f5e9 100%)`;
-//   }
+  // Функция обновления стилей ползунка
+  function updateSliderBackground(value) {
+    const percentage = (value - minValue) / (maxValue - minValue) * 100;
+    slider.style.background = `linear-gradient(to right, #81c784 0%, #81c784 ${percentage}%, #e8f5e9 ${percentage}%, #e8f5e9 100%)`;
+  }
 
   // Обработчик событий для ползунка
   slider.addEventListener("input", function() {
@@ -466,6 +466,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
     </script>
+
 
 </body>
 </html>
