@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+        
+
+        body {
+            font-family: "Roboto", sans-serif;
+        }
+        .form {
+            padding:45px; 
+        }
+
+        .forms-calculator {
+            display: flex; 
+  justify-content: center;
+
+        }
+        .form-wrapper {
+            display: flex;
+            gap: 30px;
+            
+  display: flex;
+  margin: 10px;
+  gap: 30px;
+  background: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0px 0px 10px 2px rgba(231,231,231,1);
+        }
+        .form-img {
+    background-image: url('https://static.tildacdn.com/tild3931-6539-4863-b132-663237623236/back-2.jpg');
+    width: 600px;
+  height: 600px;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat; 
+  border-top-right-radius: 10px;
+border-bottom-right-radius: 10px; 
+max-width: 100%; 
+
+}
+
+        .form-title {
+            font-family: "Roboto", sans-serif;
+            font-weight: 500;
+            color: #333;
+            font-size: 34px;
+        }
+        .inputs-title {
+            font-family: "Roboto", sans-serif;
+            font-weight: 500;
+            color: #333;
+            font-size: 15px; 
+            margin-top: 30px; 
+        }
+        /* Стилизация контейнера и входного поля */
+        .slider-container {
+            position: relative;
+            width: 100%;
+            margin: auto;
+        }
+
+        .input-number {
+            width: 100%;
+            padding: 16px;
+            color: #333;
+            border: 1px solid #CFCFCF;
+            /* цвет границы по образцу */
+            box-sizing: border-box;
+            /* чтобы padding не влиял на общую ширину */
+            position: relative;
+            /* для абсолютного позиционирования ползунка */
+            border-radius: 10px;
+            /* скругленные углы */
+            margin-top: 15px;
+            /* отступ сверху */
+            font-size: 1rem;
+            /* размер шрифта */
+            color: #333;
+            /* цвет текста */
+            text-align: right;
+        }
+
+        /* Стилизация ползунка */
+        .slider {
+            -webkit-appearance: none;
+            width: 95%;
+            margin-left: 10px;
+            height: 1px;
+            background: transparent;
+            outline: none;
+            opacity: 1;
+            position: absolute;
+            bottom: -2px;
+            border-radius: 10px;
+            z-index: 999;
+        }
+
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            /* убираем стандартный стиль для Webkit */
+            appearance: none;
+            width: 20px;
+            /* ширина кнопки ползунка */
+            height: 20px;
+            /* высота кнопки ползунка */
+            background: #0E9E00;
+            /* цвет кнопки ползунка */
+            cursor: pointer;
+            /* форма курсора */
+            border-radius: 50%;
+            /* круглая кнопка ползунка */
+            border: none;
+            /* без границы */
+        }
+
+        .slider::-moz-range-thumb {
+            width: 20px;
+            /* ширина кнопки ползунка для Firefox */
+            height: 20px;
+            /* высота кнопки ползунка для Firefox */
+            background: #0E9E00;
+            /* цвет кнопки ползунка для Firefox */
+            cursor: pointer;
+            /* форма курсора для Firefox */
+            border-radius: 50%;
+            /* круглая кнопка ползунка для Firefox */
+            border: none;
+        }
+
+        .slider:hover {
+            opacity: 1;
+        }
+
+        /* Добавляем псевдоэлемент для фона ползунка */
+        .slider::before {
+            content: '';
+            display: block;
+            position: absolute;
+            height: 10px;
+            /* та же высота, что и ползунок */
+            background-color: #CFCFCF;
+            /* зеленый цвет для заполнения */
+            border-radius: 10px;
+            /* скругляем края */
+            z-index: -1;
+            /* позиционируем за ползунком */
+        }
+
+        /* Скрыть стрелки для Chrome, Safari, Edge, Opera */
+        .input-number::-webkit-inner-spin-button,
+        .input-number::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        /* Скрыть стрелки для Firefox */
+        .input-number::-moz-range-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+        }
+
+        /* Скрыть стрелки для IE */
+        .input-number::-ms-clear {
+            display: none;
+        }
+
+        .input-number:focus {
+            outline: none;
+            /* Убирает стандартную рамку фокуса */
+            /* Ваши стили для состояния при фокусе, если они нужны */
+        }
+
+
+        .custom-radio {
+            margin: 5px 0; 
+            padding: 15px;
+            border: 1px solid transparent;
+            display: inline-block;
+            cursor: pointer;
+            border-color: #cfcfcf;
+            border-radius: 10px;
+            margin-top: 15px;
+            font-size: 15px;
+            color: #333;
+            white-space: nowrap; 
+                    }
+
+        .custom-radio.selected {
+            border: 2px solid #0E9E00;
+        }
+
+/* Стили для чекбокса */
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  font-family: "Roboto", sans-serif;
+  cursor: pointer;
+  font-size:15px; 
+}
+
+.checkbox-input {
+  display: none; /* Скрыть оригинальный чекбокс */
+}
+
+.custom-checkbox {
+  position: relative;
+  width: 20px;
+  height: 20px;
+  border: 1px solid #c7c7c7;
+  margin-right: 8px;
+  background-image: url('unchecked_icon.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  border-radius: 5px; 
+  
+}
+
+/* Стили для вида чекбокса в нажатом состоянии */
+.checkbox-input:checked ~ .custom-checkbox {
+  background-image: url('https://static.tildacdn.com/tild3837-6530-4434-a666-383062356335/galka.png'); /* Путь к вашей иконке (например, галочке) */
+}
+
+.submit-form-btn {
+    display: flex;
+    justify-content: space-between; 
+    margin-top: 30px; 
+}
+#calculateButton {
+    color:#ffffff;
+    cursor: pointer;
+    background: #0D9D00;
+    border-radius: 10px; 
+    padding: 15px 20px 15px 20px; 
+    border: 1px solid #0D9D00;
+    font-weight: 500;
+    font-size: 15px;
+}
+.btn-link-forms {
+    cursor: pointer; 
+}
+
+
+#termOptions {
+    display:flex;
+    gap:15px; 
+} 
+#interestOptions {
+    display:flex; 
+    gap:15px; 
+}
+
+
+@media (max-width: 960px) {
+    .form-img {
+        display: none; 
+    }
+}
+    @media (max-width: 500px) {
+        .form-title {
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  font-size: 25px;} 
+
+
+  .custom-radio { 
+  font-size: 10px;
+} 
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  font-family: "Roboto", sans-serif;
+  cursor: pointer;
+  font-size: 15px;
+} 
+.form-wrapper {
+  display: flex;
+  gap: 30px;
+  display: flex;
+  gap: 30px;
+  padding: 20px;
+  background: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0px 0px 10px 2px rgba(231,231,231,1);
+} 
+        .forms-calculator {
+            display: flex; 
+  justify-content: center;
+  width: 360px; 
+        }
+        
+.slider::-webkit-slider-thumb {
+            width: 27px;
+            /* ширина кнопки ползунка */
+            height: 27px;
+            /* высота кнопки ползунка */
+
+        }
+
+.slider::-moz-range-thumb {
+            width: 27px;
+            /* ширина кнопки ползунка для Firefox */
+            height: 27px;
+            /* высота кнопки ползунка для Firefox */
+        }
+        
+.slider {
+            -webkit-appearance: none;
+            width: 95%;
+            margin-left: 10px;
+            height: 1px;
+            background: transparent;
+            outline: none;
+            opacity: 1;
+            position: absolute;
+            bottom: -1px;
+
+        }
+
+
+
+}
+
+
+    </style>
+    <div class="forms-calculator">
+        <div class="form-wrapper">
+            <div class="form">
+                <div class="form-title">
+                    Рассчитайте свой доход
+                </div>
+                <div class="slider-container">
+                    <div class="inputs-title">Хочу вложить (от 50 000 рублей)</div>
+                    <input type="range" min="50000" max="3000000" value="800000" class="slider" id="myRange">
+                    <input type="number" class="input-number" id="numInput" value="800000">
+                </div>
+                <div class="inputs-title">На срок</div>
+                <div id="termOptions">
+                    <div class="custom-radio" data-value="4">4 мес</div>
+                    <div class="custom-radio" data-value="6">6 мес</div>
+                    <div class="custom-radio selected" data-value="12">12 мес</div>
+                    <div class="custom-radio" data-value="24">24 мес</div>
+                </div>
+                <div class="inputs-title">Выплачивать проценты</div>
+                <div id="interestOptions">
+                    <div class="custom-radio selected" data-value="end">В конце срока</div>
+                    <div class="custom-radio" data-value="monthly">Ежемесячно</div>
+                    <div class="custom-radio" data-value="start">В начале срока</div>
+                </div>
+
+
+                <div class="submit-form-btn">
+                    <label for="isPensioner" class="checkbox-label">
+                        <input type="checkbox" id="isPensioner" class="checkbox-input">
+                        <div class="custom-checkbox"></div>
+                        Я - пенсионер
+                    </label>
+                    <a class="btn-link-forms" href="#popup:myformcalc">
+                    <button href=""  id="calculateButton">Рассчитать доход</button> 
+                        </a> 
+                </div> 
+
+            </div>
+            <div class="form-img"></div>
+        </div>
+    </div>
+    
+    <script>
+document.addEventListener("DOMContentLoaded", function() {
+  const slider = document.getElementById("myRange");
+  const inputNumber = document.getElementById("numInput");
+  
+  // Установка начального значения и шага
+  const initialValue = 800000;
+  const minValue = 50000;
+  const maxValue = 3000000;
+  
+  // Установка начального значения и шага для ползунка и текстового поля
+  slider.min = minValue;
+  slider.max = maxValue;
+  slider.value = initialValue;
+  
+  inputNumber.min = minValue;
+  inputNumber.max = maxValue;
+  inputNumber.value = initialValue; // Установка начального значения без форматирования
+  
+//   // Функция обновления стилей ползунка
+//   function updateSliderBackground(value) {
+//     const percentage = (value - minValue) / (maxValue - minValue) * 100;
+//     slider.style.background = `linear-gradient(to right, #81c784 0%, #81c784 ${percentage}%, #e8f5e9 ${percentage}%, #e8f5e9 100%)`;
+//   }
+
+  // Обработчик событий для ползунка
+  slider.addEventListener("input", function() {
+    inputNumber.value = this.value; // Установка значения текстового поля
+    updateSliderBackground(this.value);
+  });
+  
+  // Вызываем обработчик событий для ползунка при загрузке страницы
+  slider.dispatchEvent(new Event('input'));
+
+  // Обработчик события потери фокуса для текстового поля
+  inputNumber.addEventListener("blur", function() {
+    let value = parseFloat(this.value); // Преобразование введенного значения в число с плавающей запятой
+    if (!isNaN(value)) { // Если значение является числом
+      if (value < minValue) { // Если значение меньше минимального значения
+        value = minValue; // Устанавливаем минимальное значение
+      } else if (value > maxValue) { // Если значение больше максимального значения
+        value = maxValue; // Устанавливаем максимальное значение
+      }
+      slider.value = value; // Обновление значения ползунка
+      updateSliderBackground(value); // Обновление фонового изображения ползунка
+      this.value = value; // Обновление значения текстового поля
+    }
+  });
+});
+    </script>
+    <script>
+        // Function to handle radio button selection
+        function handleRadioSelection(radioButtons) {
+            radioButtons.forEach(function(button) {
+                button.addEventListener('click', function() {
+                    radioButtons.forEach(function(btn) {
+                        btn.classList.remove('selected');
+                    });
+                    this.classList.add('selected');
+                });
+            });
+        }
+    
+        // Selecting radio buttons in each group
+        var termOptions = document.querySelectorAll('#termOptions .custom-radio');
+        var interestOptions = document.querySelectorAll('#interestOptions .custom-radio');
+    
+        // Handle selection for each group
+        handleRadioSelection(termOptions);
+        handleRadioSelection(interestOptions);
+    </script>
+    <script>
+        // Function to handle radio button selection
+        function handleRadioSelection(radioButtons) {
+            radioButtons.forEach(function(button) {
+                button.addEventListener('click', function() {
+                    radioButtons.forEach(function(btn) {
+                        btn.classList.remove('selected');
+                    });
+                    this.classList.add('selected');
+                });
+            });
+        }
+    
+        // Selecting radio buttons in each group
+        var termOptions = document.querySelectorAll('#termOptions .custom-radio');
+        var interestOptions = document.querySelectorAll('#interestOptions .custom-radio');
+    
+        // Handle selection for each group
+        handleRadioSelection(termOptions);
+        handleRadioSelection(interestOptions);
+
+
+    </script>
+
+</body>
+</html>
